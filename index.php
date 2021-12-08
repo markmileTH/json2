@@ -24,7 +24,7 @@
 
 <body>
      <button id="btnBack"> back </button>
-     <div class="main" id="main">
+     <div id="main">
           <table>
                <thead>
                     <tr>
@@ -37,29 +37,20 @@
                </tbody>
           </table>
      </div>
-     <div class="detail" id="detail">
+     <div id="detail">
           <table>
-               <thead>
-                    <tr>
-                         <th>ID</th>
-                         <th>Title</th>
-                         <th>UserID</th>
-                    </tr>
+               <thead id="tdetail">
+
                </thead>
                <tbody id="tblDetails">
                </tbody>
           </table>
      </div>
 
-     <div class="comment" id="detailComment">
+     <div id="detailComment">
           <table>
-               <thead>
-                    <tr>
-                         <th>id</th>
-                         <th>name</th>
-                         <th>email</th>
-                         <th>body</th>
-                    </tr>
+               <thead id="tcomment">
+
                </thead>
                <tbody id="tblcomment">
                </tbody>
@@ -77,6 +68,12 @@
           $.getJSON(url)
                .done((data) => {
                     console.log(data);
+                    var line_t = "<tr>";
+                    line_t += "<th>id</th>"
+                    line_t += "<th>Title</th>"
+                    line_t += "<th>Detail</th>"
+                    line_t += "</tr>";
+                    $("#tdetail").append(line_t);
                     var line = "<tr id='detailROW'";
                     line += "><td>" + data.id + "</td>"
                     line += "<td><b>" + data.title + "</b><br/>"
@@ -116,6 +113,13 @@
           $.getJSON(url)
                .done((data) => {
                     console.log(data);
+                    var line_C = "<tr>";
+                    line_C += "<th>id</th>"
+                    line_C += "<th>name</th>"
+                    line_C += "<th>email</th>"
+                    line_C += "<th>body</th>"
+                    line_C += "</tr>";
+                    $("#tcomment").append(line_C);
                     var line = "<tr> id='comentRoll'";
                     line += "><td>" + data.id + "</td>"
                     line += "<td>" + data.name + "<br/>"
@@ -139,13 +143,10 @@
                $("#main").show();
                $("#detail").hide();
                location.reload();
-               $("#detailROW").remove();
-               $("#comentRoll").remove();
+
 
           });
-          $("#link").click(() => {
-               $("#detailComment").hide
-          })
+
      })
 </script>
 
